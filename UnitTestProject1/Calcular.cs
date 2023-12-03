@@ -1,13 +1,10 @@
-﻿using ApiTeste.Interface;
-using ApiTeste.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.Remoting.Messaging;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ApiTeste.Services
+namespace UnitTestProject1
 {
     public class Calcular
     {
@@ -22,7 +19,7 @@ namespace ApiTeste.Services
             List<Calculo> calculos = new List<Calculo>();
             Calculo calculo = new Calculo();
             calculo.ValorBruto = valorInicial;
-            calculo.ValorLiquido = CalculoValorLiquido(valorInicial,meses);
+            calculo.ValorLiquido = CalculoValorLiquido(valorInicial, meses);
             calculos.Add(calculo);
 
             return calculos;
@@ -39,7 +36,7 @@ namespace ApiTeste.Services
             valorInicial_Imposto = Convert.ToDouble(valorInicial);
 
             ImpostoFinal = meuValor * TBI_CDI_Imposto;
-            var ValorLiquido= meuValor + ImpostoFinal;
+            var ValorLiquido = meuValor + ImpostoFinal;
 
             return Math.Round(Convert.ToDouble(ValorLiquido), 2);
         }

@@ -3,7 +3,7 @@
 
 <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
   <input type="number" name="ValorInicial" ngModel placeholder="Valor Inicial" min="1"/><br /><br />
-  <input type="number" name="Prazo" ngModel placeholder="Prazo" min="1"/><br /><br />
+  <input type="number" name="Prazo" ngModel placeholder="Prazo" min="1" no-float/><br /><br />
 
   <button type="submit">Calcular</button>
 </form>

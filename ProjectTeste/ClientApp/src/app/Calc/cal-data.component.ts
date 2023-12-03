@@ -15,28 +15,27 @@ export class CalcDataComponent {
 
   onSubmit(formValue: any): void {
     this.PodeSalvar = true;
-    console.warn(formValue.Prazo)
-    if (formValue.Prazo < 0) {
-      this.PodeSalvar = false;
-      alert('Atenção Prazo não pode ser negativo')
-    }
-    if (formValue.ValorInicial < 0) {
+    if (formValue.ValorInicial < 0 || formValue.ValorInicial == "") {
       this.PodeSalvar = false;
       alert('Atenção Valor Inicial não pode ser negativo')
     }
-    if (this.PodeSalvar == true)
-    {
-      this.calculoService.salvar(formValue).subscribe(
-      res => {
-        this.calculo = res;
-        console.log(this.calculo);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    if (formValue.Prazo < 0 || formValue.Prazo == "") {
+      this.PodeSalvar = false;
+      alert('Atenção Prazo não pode ser negativo')
     }
-    
+
+    if (this.PodeSalvar == true) {
+      this.calculoService.salvar(formValue).subscribe(
+        res => {
+          this.calculo = res;
+          //console.log(this.calculo);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+
   }
 }
 
