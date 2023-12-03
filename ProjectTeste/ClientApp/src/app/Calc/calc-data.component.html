@@ -1,0 +1,27 @@
+<h1 id="tableLabel">Cáculo</h1>
+
+
+<form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
+  <input type="number" name="ValorInicial" ngModel placeholder="Valor Inicial" min="1"/><br /><br />
+  <input type="number" name="Prazo" ngModel placeholder="Prazo" min="1"/><br /><br />
+
+  <button type="submit">Calcular</button>
+</form>
+
+<p *ngIf="!calculo"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="calculo">
+  <thead>
+    <tr>
+      <th>Valor Bruto</th>
+      <th>Valor Liquido</th>
+    
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let calculos of calculo">
+      <td>{{ calculos.ValorBruto }}</td>
+      <td>{{ calculos.ValorLiquido }}</td>
+    </tr>
+  </tbody>
+</table>
