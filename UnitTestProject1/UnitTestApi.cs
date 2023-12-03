@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace UnitTestProject1
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTestApi
     {
         [TestMethod]
         public void TestMesAteASeis()

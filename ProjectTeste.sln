@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTeste", "ProjectTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTeste", "ApiTeste\ApiTeste.csproj", "{8FA4C3F1-A22F-458A-8CEC-06E503D770D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{A211CD9C-DA31-4FDC-9C88-0BA2421C2B35}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProjectApi", "UnitTestProject1\UnitTestProjectApi.csproj", "{A211CD9C-DA31-4FDC-9C88-0BA2421C2B35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
