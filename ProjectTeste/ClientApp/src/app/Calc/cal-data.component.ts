@@ -10,32 +10,20 @@ import { CalculoService } from '../../Services/CalculoService';
 })
 export class CalcDataComponent {
   public calculo: Calculo[] = [];
-  private PodeSalvar: boolean | undefined;
   constructor(private calculoService: CalculoService) { }
 
   onSubmit(formValue: any): void {
-    this.PodeSalvar = true;
-    if (formValue.ValorInicial < 0 || formValue.ValorInicial == "") {
-      this.PodeSalvar = false;
-      alert('Atenção Valor Inicial não pode ser negativo')
-    }
-    if (formValue.Prazo < 0 || formValue.Prazo == "") {
-      this.PodeSalvar = false;
-      alert('Atenção Prazo não pode ser negativo')
-    }
-
-    if (this.PodeSalvar == true) {
       this.calculoService.salvar(formValue).subscribe(
         res => {
           this.calculo = res;
-          //console.log(this.calculo);
+          if (this.calculo.length == 0) {
+            alert('Atenção é necessário preencher os valores')
+          }
         },
         error => {
           console.log(error);
         }
       );
-    }
-
   }
 }
 

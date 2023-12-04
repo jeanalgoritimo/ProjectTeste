@@ -7,7 +7,7 @@ namespace ApiTeste.Models
 {
     public class Calculo
     {
-        public string ValorBruto { get; set; }
+        public double ValorBruto { get; set; }
         public double ValorLiquido { get; set; }
 
     }

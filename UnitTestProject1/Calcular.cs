@@ -8,37 +8,45 @@ namespace UnitTestProject1
 {
     public class Calcular
     {
-        private double TBI = 1.08;
-        private double CDI = 0.009;
-        private double TBI_CDI = 0.0;
-        private double TBI_CDI_Imposto = 0.0;
-        private double valorInicial_Imposto = 0.0;
-        private double ImpostoFinal = 0.0;
+        
         public List<Calculo> CalcularParametros(string valorInicial, string meses)
         {
             List<Calculo> calculos = new List<Calculo>();
             Calculo calculo = new Calculo();
-            calculo.ValorBruto = valorInicial;
-            calculo.ValorLiquido = CalculoValorLiquido(valorInicial, meses);
-            calculos.Add(calculo);
+
+            if ((!string.IsNullOrEmpty(valorInicial) && !string.IsNullOrEmpty(meses)))
+            {
+                calculo.ValorBruto = CalculoValorFinal(valorInicial, meses);
+                calculo.ValorLiquido = CalculoValorLiquido(valorInicial, calculo.ValorBruto);
+
+                calculos.Add(calculo);
+            }
+            else
+            {
+                calculos = new List<Calculo>();
+            }
 
             return calculos;
         }
-        private double CalculoValorLiquido(string valorInicial, string meses)
+        private double CalculoValorFinal(string valorInicial, string meses)
         {
             double meuValor = 0;
-
             meuValor = Math.Round(Convert.ToDouble(valorInicial), 2);
             var porcentagem = returnTabelaImposto(meses);
+            var TBI_CDI = 1.08 * 0.009;
+            var TBI_CDI_Imposto = porcentagem + TBI_CDI;
+            var ImpostoFinal = meuValor * TBI_CDI_Imposto;
+            var ValorFinal = meuValor + ImpostoFinal;
 
-            TBI_CDI = TBI * CDI;
-            TBI_CDI_Imposto = porcentagem + TBI_CDI;
-            valorInicial_Imposto = Convert.ToDouble(valorInicial);
+            return Math.Round(Convert.ToDouble(ValorFinal), 2);
+        }
+        private double CalculoValorLiquido(string valorbruto, double valorInvestido)
+        {
+            double meuValor = 0;
+            meuValor = Math.Round(Convert.ToDouble(valorbruto), 2);
+            var ValorFinal = valorInvestido - meuValor;
 
-            ImpostoFinal = meuValor * TBI_CDI_Imposto;
-            var ValorLiquido = meuValor + ImpostoFinal;
-
-            return Math.Round(Convert.ToDouble(ValorLiquido), 2);
+            return Math.Round(Convert.ToDouble(ValorFinal), 2);
         }
 
         private double returnTabelaImposto(string faixaImposto)
